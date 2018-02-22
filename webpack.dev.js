@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,7 +8,7 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 const PATHS = {
   source: path.join(__dirname, 'src'),
-  jsout: path.join(__dirname),
+  jsout: path.join(__dirname, 'dist'),
   htmlout: path.join(__dirname),
 };
 
@@ -17,12 +19,18 @@ const styleOpts = {
 };
 
 module.exports = {
-  entry: [
-    'react-hot-loader/patch',
-    './src/index.js',
-  ],
+  entry: {
+    App: [
+      'babel-polyfill',
+      'react-hot-loader/patch',
+      `${PATHS.source}/index.js`,
+    ],
+    vendor: [
+      'react',
+    ],
+  },
   output: {
-    path: __dirname,
+    path: PATHS.jsout,
     publicPath: '/',
     filename: 'bundle.js',
   },
@@ -57,12 +65,12 @@ module.exports = {
     new ExtractTextPlugin('styles.css'),
     new webpack.SourceMapDevToolPlugin({
       filename: '[name].js.map',
-      exclude: ['vendor.js']
+      exclude: ['vendor.js'],
     }),
     new HtmlWebpackPlugin({
       filename: `${PATHS.jsout}/index.html`,
       template: './index.html',
-      title: 'Test',
+      title: 'Retirement App',
     }),
     new StyleLintPlugin(styleOpts),
     new webpack.HotModuleReplacementPlugin(),
@@ -74,5 +82,5 @@ module.exports = {
     hot: true,
     open: true,
     publicPath: 'http://localhost:9000/',
-  }
+  },
 };
