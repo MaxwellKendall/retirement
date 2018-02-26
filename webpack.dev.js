@@ -21,7 +21,6 @@ const styleOpts = {
 module.exports = {
   entry: {
     App: [
-      'babel-polyfill',
       'react-hot-loader/patch',
       `${PATHS.source}/index.js`,
     ],
@@ -62,7 +61,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.json'],
   },
   plugins: [
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('global.css'),
     new webpack.SourceMapDevToolPlugin({
       filename: '[name].js.map',
       exclude: ['vendor.js'],

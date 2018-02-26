@@ -7,8 +7,7 @@
     "start": "webpack-dev-server --config webpack.dev.js --progress --inline --hot --open",
     "test": "BABEL_ENV=test mocha --compilers js:babel-core/register --require ./testSetup.js --recursive ./tests",
     "test:watch": "yarn run test -- --watch",
-    "predeploy": "yarn run build",
-    "deploy": "yarn run predeploy && s3cmd sync dist/* s3://old-rossy-retirement.herokuapp.com",
+    "deploy": "yarn run build && s3cmd sync dist/* s3://old-rossy-retirement.herokuapp.com",
     "build": "webpack --config webpack.prod.js"
   },
   "repository": {},
@@ -64,6 +63,7 @@
     "postcss-loader": "^2.0.8",
     "prop-types": "^15.5.10",
     "react": "^16.1.1",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.1.1",
     "react-hot-loader": "^3.1.2",
     "react-redux": "^5.0.6",
