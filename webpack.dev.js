@@ -31,7 +31,7 @@ module.exports = {
   output: {
     path: PATHS.jsout,
     publicPath: '/',
-    filename: 'bundle.js',
+    filename: '[name].js',
   },
   devtool: 'eval',
   module: {
@@ -53,7 +53,14 @@ module.exports = {
           ],
         }),
       },
-      { test: /\.(png|svg|jpg|gif)$/, use: 'file-loader?name=images/[name].[ext]' },
+      { test: /\.(png|svg|jpg|gif)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'images/[hash].[ext]',
+          },
+        },
+      },
       { test: /\.(woff|woff2|eot|ttf|otf)$/, use: 'file-loader?name=fonts/[name].[ext]' },
     ],
   },

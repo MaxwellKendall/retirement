@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
 import countdown from 'countdown';
 import moment from 'moment';
 
-import Month from './Month';
-import Day from './Day';
-import Hour from './Hour';
-import Minute from './Minute';
-import Second from './Second';
+import CountDownCard from './CountDownCard';
+import CountDown from './Countdown';
 
 export default class App extends Component {
   state = {
@@ -26,13 +22,13 @@ export default class App extends Component {
   render() {
     const { timeLeft } = this.state;
     return (
-      <div className="countdown__container">
-        <Month month={timeLeft.months} />
-        <Day day={timeLeft.days} />
-        <Hour hour={timeLeft.hours} />
-        <Minute minute={timeLeft.minutes} />
-        <Second second={timeLeft.seconds} />
-      </div>
+      <CountDown>
+        <CountDownCard type="month" value={timeLeft.months} />
+        <CountDownCard type="days" value={timeLeft.days} />
+        <CountDownCard type="hours" value={timeLeft.hours} />
+        <CountDownCard type="minutes" value={timeLeft.minutes} />
+        <CountDownCard type="seconds" value={timeLeft.seconds} />
+      </CountDown>
     );
   }
 }
