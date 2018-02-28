@@ -1,68 +1,103 @@
+@import 'vars';
+
 html,
 body,
 #app,
 .container {
   display: flex;
   margin: 0;
-  justify-content: center;
   height: 100%;
   width: 100%;
 }
 
 body {
   font-size: 10px;
+  @media (min-width: $tablet) {
+    font-size: 15px;
+  }
 }
 
-.container {
-  font-size:1.6em;
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  h2 {
+    text-align: center;
+  }
+  .btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 5em;
+    .button {
+      height: 5em;
+      padding: 0 3em;
+      border-radius: 1em;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
 }
 
 .countdown__container {
   display: flex;
   justify-content: center;
-  width: 35em;
-  height: 40em;
-  width: 100em;
-  height: 70em;
-  padding-top: 2em;
-  @media (min-width: 768px) {
-    width: 100em;
-    height: 70em;
-  }
-  .countdown__unit {
-    height: 12em;
-    border-radius: .75em;
-    width: 12em;
-    margin: 0px;
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .countdown__cards {
     display: flex;
-    overflow: hidden;
-    flex-direction: column;
+    flex-direction: row;
+    width: 100%;
     justify-content: center;
-    text-align: center;
-    align-items: center;
-    border: 1px solid #000;
+    .countdown__unit {
+      margin: 0px;
+      padding: .5em;
+      display: flex;
+      overflow: hidden;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+    }
     .countdown__number {
       height: 4em;
       display: flex;
+      background: #757575;
+      border-radius: 12px;
       justify-content: center;
       align-items: center;
       width: 6em;
       position: relative;
       animation-iteration-count: infinite;
       overflow: hidden;
+        @media (min-width: 768px) {
+          width: 10em;
+      }
+      span {
+        font-size: 2em;
+        color: white;
+      }
       .countdown__seconds {
         animation-duration: 1s;
         animation-iteration-count: infinite;
         animation-name: changeNumber;
         transition: transform cubic-bezier(0,1.56,1,-1.56);
-        font-size: 2em;
         position: relative;
         top: -1.5em;
       }
     }
   }
-  h3 {
-    font-size: 2em;
+   h3 {
+    font-size: 1.5em;
+    padding: 0;
+    padding-top: .5em;
+    margin: 0;
+    text-align: left;
   }
 }
 
@@ -74,7 +109,17 @@ body {
     transform: translateY(3em);
   }
 }
-#app {
-    background: url('../../images/mom_dad_beach.jpg') no-repeat;
-    background-size: cover;
-}
+// #app {
+//     // background: url('../../images/Mom_and_Dad.jpg') no-repeat;
+//     // background: url('../../images/Mom_and_Dad.jpg') no-repeat;
+//     background: url('../../images/mobile2.png') no-repeat;
+//     background-origin: center;
+//     background-size: cover;
+//     height: auto;
+//     width: auto;
+//     min-height: 22em;
+//     min-width: 10em;
+//     @media (min-width: $tablet) {
+      
+//     }
+// }
