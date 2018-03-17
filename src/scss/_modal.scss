@@ -1,0 +1,10 @@
+.ui.page,
+.modals,
+.dimmer,
+.transition,
+.visible.active {
+  padding-top: 10em;
+  @media (min-width: $desktop) {
+    padding: 10em;
+  }
+}

@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const backEnd = 'http://localhost:9001';
 
 const PATHS = {
   source: path.join(__dirname, 'src'),
@@ -85,8 +86,10 @@ module.exports = {
     port: 9000,
     contentBase: './dist',
     historyApiFallback: true,
+    proxy: {
+      '**': `${backEnd}`,
+    },
     hot: true,
     open: true,
-    publicPath: 'http://localhost:9000/',
   },
 };

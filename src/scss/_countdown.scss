@@ -1,0 +1,68 @@
+
+.countdown__container {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .countdown__cards {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    .countdown__unit {
+      margin: 0px;
+      padding: .5em;
+      display: flex;
+      overflow: hidden;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+    }
+    .countdown__number {
+      height: 4em;
+      display: flex;
+      background: #757575;
+      border-radius: 12px;
+      justify-content: center;
+      align-items: center;
+      width: 6em;
+      position: relative;
+      animation-iteration-count: infinite;
+      overflow: hidden;
+        @media (min-width: 768px) {
+          width: 10em;
+      }
+      span {
+        font-size: 2em;
+        color: white;
+      }
+      .countdown__seconds {
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-name: changeNumber;
+        transition: transform cubic-bezier(0,1.56,1,-1.56);
+        position: relative;
+        top: -1.5em;
+      }
+    }
+  }
+   h3 {
+    font-size: 1.5em;
+    padding: 0;
+    padding-top: .5em;
+    margin: 0;
+    text-align: left;
+  }
+}
+
+@keyframes changeNumber {
+  50% {
+    transform: translateY(1.5em);
+  }
+  100% {
+    transform: translateY(3em);
+  }
+}

@@ -36,3 +36,4 @@ target/
 
 # dotenv environment variables file
 .env
+/secrets
