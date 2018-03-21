@@ -1,74 +1,48 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import countdown from 'countdown';
 import moment from 'moment-timezone';
 import axios from 'axios';
-import FacebookLogin from 'react-facebook-login';
-import { GoogleLogin } from 'react-google-login-component';
+import cx from 'classnames';
 
 import CountDownCard from './CountDownCard';
 import CountDown from './CountDown';
-import BasicModal from './common/BasicModal';
-
-import secrets from '../../secrets';
+import LoginModal from './LoginModal';
 
 export default class App extends Component {
+  static propTypes = {
+    getComments: PropTypes.func.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.targetDate = moment.tz([2018, 5, 29, 17, 0, 0], 'America/New_York');
   }
 
   state = {
+    showComments: false,
     timeLeft: countdown(this.targetDate),
   }
 
   componentDidMount() {
     setInterval(this.updateState, 1000);
+    this.props.getComments(5);
   }
 
-  getComments = (e) => {
-    const index = e.target.value;
-    axios.get('/api/comments/', { params: { index } })
-      .then(res => console.log('comments: ', res));
+  getComments = () => {
+    // const index = e.target.value;
+    // this.props.getComments(index);
+    this.setState(prevState => ({ ...prevState, showComments: !prevState.showComments }));
   }
 
   updateState = () => {
     this.setState(prevState => ({ ...prevState, timeLeft: countdown(this.targetDate) }));
   }
 
-  googleResponse = (resp) => {
-    const { Eea, Paa, U3, ig } = resp.w3;
-    const data = {
-      name: ig,
-      email: U3,
-      picture: Paa,
-      id: Eea,
-      provider: 'google',
-    };
-    axios.post('/login', data)
-      .then((res) => {
-        console.log(res.data);
-      });
-  }
-
-  facebookResponse = (resp) => {
-    const { name, email, picture, id, accessToken } = resp;
-    axios.post('/login', {
-      name,
-      email,
-      picture,
-      id,
-      accessToken,
-      provider: 'facebook',
-    })
-      .then((response) => {
-        console.log(response.data);
-      });
-  }
-
-  test = () => console.log('hello111');
-
   render() {
-    const { timeLeft } = this.state;
+    const { timeLeft, showComments } = this.state;
+    const { comments } = this.props;
+    const commentsStyle = cx('comments', { 'hidden': !showComments });
     return (
       <div ref={(main) => { this.main = main; }} className="main">
         <CountDown>
@@ -78,25 +52,26 @@ export default class App extends Component {
           <CountDownCard type="minutes" value={timeLeft.minutes} />
           <CountDownCard type="seconds" value={timeLeft.seconds} />
         </CountDown>
-        <BasicModal>
-          <FacebookLogin
-            appId={`${secrets.facebook}`}
-            autoLoad
-            fields="name,email,picture"
-            callback={this.facebookResponse}
-            icon="fa-facebook"
-          >Login with Facebook
-          </FacebookLogin>
-          <GoogleLogin
-            socialId={`${secrets.google}`}
-            className="google"
-            scope="profile"
-            fetchBasicProfile
-            responseHandler={this.googleResponse}
-            buttonText="Login With Google"
-          />
-        </BasicModal>
-        <button className="comments" onClick={this.getComments} value="10">comments</button>
+        <LoginModal
+          parent={this.main}
+          closeOnDocumentClick
+          dimmer="blurring"
+          header="Log in with Facebook or Google to Congratulate Ross!"
+        />
+        <button className="comments" onClick={this.getComments} value="10">
+          {showComments ? 'Hide Comments' : 'Show Comments'}
+        </button>
+        <div className={commentsStyle} >
+          <ul>
+            {comments.map(el => (
+              <li>
+                <h3>{el.name}</h3>
+                <img src={el.photoUrl} alt="avatar" />
+                <span>{el.message}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }

@@ -1,0 +1,7 @@
+{
+  "generator-react": {
+    "appName": "frontEnd",
+    "testSetup": true,
+    "reduxActions": true
+  }
+}

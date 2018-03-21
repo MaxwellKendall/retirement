@@ -23,7 +23,6 @@ const configureStore = (initialState = {}) => {
   if (module.hot) {
     module.hot.accept('../reducers', () => {
       const nextReducer = require('../reducers/index'); // eslint-disable-line global-require
-
       store.replaceReducer(nextReducer);
     });
   }

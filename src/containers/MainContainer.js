@@ -1,0 +1,13 @@
+import { connect } from 'react-redux';
+import App from '../components/App';
+import * as actions from '../actions/comments';
+
+const mapStateToProps = state => ({
+  comments: state.comments.comments,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getComments: index => dispatch(actions.getComments(index)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

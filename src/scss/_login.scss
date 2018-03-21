@@ -1,0 +1,26 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .facebook,
+    .google {
+      margin: .25em;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .google {
+      height: 59px;
+      width: 268px;
+      display: flex;
+      border: none;
+      color: #fff;
+      font-family: Roboto,sans-serif;
+      align-items: center;
+      p {
+        color: gray;
+        font-weight: bold;
+        font-size: 1.45em;
+      }
+    }
+}

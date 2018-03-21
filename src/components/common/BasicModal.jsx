@@ -4,7 +4,7 @@ import { Button, Header, Modal } from 'semantic-ui-react';
 
 const BasicModal = props => (
   <Modal
-    mountNode={document.getElementById('app')}
+    mountNode={props.parent}
     onMount={() => { console.log('hey Guyz'); }}
     trigger={<Button>Basic Modal</Button>} basic size="small">
     <Header icon="id card" content="Log in with either Facebook or Google" />
@@ -15,6 +15,7 @@ const BasicModal = props => (
 );
 
 BasicModal.propTypes = {
+  parent: PropTypes.node.isRequired,
   children: PropTypes.node.isRequired,
 };
 
