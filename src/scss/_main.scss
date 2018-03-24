@@ -1,13 +1,16 @@
 @import 'vars';
 
-html,
-body,
-#app,
-.container {
+html
+// body,
+// #app,
+// .container 
+{
   display: flex;
   margin: 0;
+  justify-content: center;
   height: 100%;
   width: 100%;
+  align-items: flex-start;
 }
 
 body {

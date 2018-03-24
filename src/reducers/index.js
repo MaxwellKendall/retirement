@@ -2,17 +2,12 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 import comments from './comments';
-
-/**
- * rootReducer:
- *   - creates initial state
- *   - key is state
- *   - Value is reducer that returns state
- */
+import ui from './ui';
 
 const rootReducer = combineReducers({
   router: routerReducer, // from reduxRouter
   comments,
+  ui,
 });
 
 export default rootReducer;

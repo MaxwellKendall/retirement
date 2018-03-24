@@ -7,12 +7,7 @@ export default class PrivateRoute extends Component {
   static propTypes = {
     path: PropTypes.string.isRequired,
     component: PropTypes.func.isRequired,
-    // activeUser: PropTypes.object,
-    // setActiveUser: PropTypes.func.isRequired,
-  }
-
-  static defaultProps = {
-    activeUser: null,
+    activeUser: PropTypes.object.isRequired,
   }
 
   render() {
