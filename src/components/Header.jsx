@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import countdown from 'countdown';
 import moment from 'moment-timezone';
-
+import cx from 'classnames';
 import CountDownCard from './CountDownCard';
 import CountDown from './CountDown';
 
 export default class Header extends Component {
   static propTypes = {
-    // activeUser: PropTypes.object,
+    activeUser: PropTypes.object,
+    logOut: PropTypes.func.isRequired,
     // loading: PropTypes.bool.isRequired,
   }
 
@@ -24,6 +25,7 @@ export default class Header extends Component {
 
   state = {
     timeLeft: countdown(this.targetDate),
+    hideLogOut: false,
   }
 
   componentDidMount() {
@@ -34,10 +36,21 @@ export default class Header extends Component {
     this.setState(prevState => ({ ...prevState, timeLeft: countdown(this.targetDate) }));
   }
 
+  handleLogOut = () => {
+    this.props.logOut(null);
+    this.setState(prevState => ({ ...prevState, hideLogOut: true }));
+  }
+
   render() {
     const { timeLeft } = this.state;
     return (
       <div ref={(main) => { this.main = main; }} className="main">
+        <button
+          classNames={cx({ 'hidden': this.state.hideLogOut })}
+          onClick={this.handleLogOut}
+        >
+          Log Out
+        </button>
         <CountDown>
           <CountDownCard type="months" value={timeLeft.months} />
           <CountDownCard type="days" value={timeLeft.days} />

@@ -14,7 +14,6 @@ export default class Home extends Component {
   render() {
     return (
       <div className="home">
-      HOME!!!!
         <div className="home__memories">
           <Link to="/memories">Click here for memories!</Link>
         </div>
