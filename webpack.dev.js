@@ -34,7 +34,7 @@ module.exports = {
   output: {
     path: PATHS.jsout,
     publicPath: '/',
-    filename: '[name].js',
+    filename: 'App.min.js',
   },
   devtool: 'eval',
   module: {

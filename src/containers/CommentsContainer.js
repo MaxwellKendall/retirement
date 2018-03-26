@@ -4,6 +4,7 @@ import * as actions from '../actions/comments';
 
 const mapStateToProps = state => ({
   comments: state.comments.comments,
+  activeUser: state.ui.activeUser,
 });
 
 const mapDispatchToProps = dispatch => ({
