@@ -25,7 +25,6 @@ export default class Header extends Component {
 
   state = {
     timeLeft: countdown(this.targetDate),
-    hideLogOut: false,
   }
 
   componentDidMount() {
@@ -46,7 +45,7 @@ export default class Header extends Component {
     return (
       <div ref={(main) => { this.main = main; }} className="main">
         <button
-          classNames={cx({ 'hidden': this.state.hideLogOut })}
+          className={cx({ 'hidden': this.props.activeUser === null})}
           onClick={this.handleLogOut}
         >
           Log Out

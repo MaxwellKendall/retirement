@@ -29,7 +29,7 @@ export default class Login extends Component {
     })
       .then((response) => {
         this.props.setLoading(true);
-        this.props.setActiveUser(response.data[0]);
+        this.props.setActiveUser(response.data);
         this.props.history.push('/');
       });
   };
@@ -46,7 +46,8 @@ export default class Login extends Component {
     axios.post('/login', data)
       .then((res) => {
         this.props.setLoading(true);
-        this.props.setActiveUser(res.data[0]);
+        this.props.setActiveUser(res.data);
+        this.props.setActiveUser('yamom');
         this.props.history.push('/');
       });
   };
