@@ -17,7 +17,7 @@ export default class PrivateRoute extends Component {
         path={this.props.path}
         /* eslint-disable no-unused-expressions */
         render={() => (
-          this.props.activeUser === null
+          !this.props.activeUser
             ? <Redirect to="/login" />
             : <this.props.component />
         )}

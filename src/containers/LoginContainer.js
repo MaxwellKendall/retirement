@@ -3,7 +3,6 @@ import Login from '../components/Login';
 import * as actions from '../actions/ui';
 
 const mapStateToProps = state => ({
-  activeUser: state.ui.activeUser,
   loading: state.ui.loading,
 });
 

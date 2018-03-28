@@ -4,7 +4,6 @@ import * as actions from '../actions/comments';
 import * as uiActions from '../actions/ui';
 
 const mapStateToProps = state => ({
-  user: state.ui.activeUser,
   loading: state.ui.loading,
   activeUser: state.ui.activeUser,
 });

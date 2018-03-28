@@ -12,7 +12,7 @@ import Header from './Header';
 const App = props => (
   <Router>
     <div>
-      <Header logOut={props.setActiveUser} activeUser={props.activeUser}/>
+      <Header logOut={props.setActiveUser} activeUser={props.activeUser} />
       <Switch>
         <Route exact path="/login" component={LoginContainer} />
         <PrivateRoute activeUser={props.activeUser} exact path="/memories" component={CommentsContainer} />
@@ -25,7 +25,9 @@ const App = props => (
 
 App.propTypes = {
   activeUser: PropTypes.object.isRequired,
-  logOut: PropTypes.func.isRequired,
+  // loading: PropTypes.bool.isRequired,
+  // getComments: PropTypes.func.isRequired,
+  setActiveUser: PropTypes.func.isRequired,
 };
 
 export default App;

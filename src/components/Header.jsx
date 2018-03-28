@@ -10,7 +10,6 @@ export default class Header extends Component {
   static propTypes = {
     activeUser: PropTypes.object,
     logOut: PropTypes.func.isRequired,
-    // loading: PropTypes.bool.isRequired,
   }
 
   static defaultProps = {
@@ -45,7 +44,7 @@ export default class Header extends Component {
     return (
       <div ref={(main) => { this.main = main; }} className="main">
         <button
-          className={cx({ 'hidden': this.props.activeUser === null})}
+          className={cx({ 'hidden': !this.props.activeUser})}
           onClick={this.handleLogOut}
         >
           Log Out

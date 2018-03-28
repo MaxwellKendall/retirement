@@ -21,7 +21,7 @@ const store = configureStore();
 const history = configureHistory();
 
 store.subscribe(throttle(() => {
-  saveState({ activeUser: store.getState().ui.activeUser });
+  saveState(store.getState().ui.activeUser);
 }, 5000));
 
 const render = (Component) => {

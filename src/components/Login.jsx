@@ -10,9 +10,12 @@ export default class Login extends Component {
   static propTypes = {
     setLoading: PropTypes.func.isRequired,
     setActiveUser: PropTypes.func.isRequired,
-    activeUser: PropTypes.object.isRequired,
     history: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
+  }
+
+  static defaultProps = {
+    activeUser: {},
   }
 
   state = {};

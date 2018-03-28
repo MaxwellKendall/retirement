@@ -5,7 +5,7 @@ import { loadState } from '../localStorage';
 
 const persistedState = loadState();
 const initialState = {
-  activeUser: persistedState.activeUser,
+  activeUser: persistedState,
   loading: false,
   error: false,
   retired: false,
