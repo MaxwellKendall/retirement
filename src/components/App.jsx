@@ -7,6 +7,7 @@ import My404Component from './common/My404Component';
 import CommentsContainer from '../containers/CommentsContainer';
 import LoginContainer from '../containers/LoginContainer';
 import HomeContainer from '../containers/HomeContainer';
+import QuizContainer from '../containers/QuizContainer';
 import Header from './Header';
 
 const App = props => (
@@ -16,6 +17,7 @@ const App = props => (
       <Switch>
         <Route exact path="/login" component={LoginContainer} />
         <PrivateRoute activeUser={props.activeUser} exact path="/memories" component={CommentsContainer} />
+        <PrivateRoute activeUser={props.activeUser} exact path="/quiz" component={QuizContainer} />
         <PrivateRoute activeUser={props.activeUser} exact path="/" component={HomeContainer} />
         <Route component={My404Component} />
       </Switch>

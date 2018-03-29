@@ -2,8 +2,10 @@
 @import 'countdown';
 @import 'login';
 @import 'modal';
+@import 'quiz';
+
 .hidden {
-  display: none;
+  display: none !important;
 }
 // #app {
 //     // background: url('../../images/Mom_and_Dad.jpg') no-repeat;

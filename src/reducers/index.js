@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import comments from './comments';
 import ui from './ui';
+import comments from './comments';
+import quiz from './quiz';
 
 const rootReducer = combineReducers({
   router: routerReducer, // from reduxRouter
-  comments,
   ui,
+  comments,
+  quiz,
 });
 
 export default rootReducer;
