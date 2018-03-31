@@ -24,7 +24,8 @@ const saveState = (state) => {
 const defineEndPoint = () => {
   let rtrn = 'http://localhost:9001';
   if (process.env.NODE_ENV === 'production') {
-    rtrn = 'https://old-rossy-retirement.herokuapp.com/';
+    console.log('production is true: ', process.env.NODE_ENV);
+    rtrn = 'https://old-rossy-retirement.herokuapp.com';
   }
   return rtrn;
 }
