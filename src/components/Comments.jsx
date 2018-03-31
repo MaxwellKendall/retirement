@@ -27,15 +27,19 @@ export default class Comments extends Component {
     // this.setState(prevState => ({ ...prevState, hideComments: !prevState.hideComments }));
   }
 
-  displayComments = comments => (
-    comments.map((el, index) => (
-      <li key={index}>
-        <img src={el.photoUrl} alt="avatar" />
-        <h3>{el.name}</h3>
-        <span>{el.message}</span>
-      </li>
-    ))
-  );
+  displayComments = (comments) => {
+    if (comments.length === 0) {
+      return <li>No comments yet! Be the first one to share a memory!</li>;
+    } return (
+      comments.map((el, index) => (
+        <li key={index}>
+          <img src={el.photoUrl} alt="avatar" />
+          <h3>{el.name}</h3>
+          <span>{el.message}</span>
+        </li>
+      ))
+    );
+  }
 
   updateMessage = (e) => {
     e.persist();
