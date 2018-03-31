@@ -1,8 +1,16 @@
+@import 'vars';
+
 .login {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 5em;
+    .login__buttons {
+      padding-top: 5em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .facebook,
     .google {
       margin: .25em;
@@ -10,9 +18,21 @@
         cursor: pointer;
       }
     }
-    .google {
-      height: 59px;
-      width: 268px;
+    .localAuth {
+      background: #BDBDBD;
+    }
+    .google,
+    .localAuth {
+      height: 45px;
+      width: 215px;
+      @media (min-width: $tablet) {
+        height: 51px;
+        width: 236px;  
+      }
+      @media (min-width: $desktop) {
+        height: 59px;
+        width: 268px;  
+      }
       display: flex;
       border: none;
       color: #fff;

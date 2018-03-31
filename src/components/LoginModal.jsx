@@ -20,7 +20,7 @@ class LoginModal extends Component {
 
     return (
       <div>
-        <Button onClick={this.show('medium')}>Register with Email</Button>
+        <Button className="localAuth" onClick={this.show('medium')}>Register with Email</Button>
         <Modal
           dimmer="blurring"
           size={size}

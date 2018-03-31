@@ -8,12 +8,18 @@ import { defineEndPoint } from '../utils';
 
 const endPoint = defineEndPoint();
 
-export const displayComments = createAction('DISPLAY_COMMENTS');
-export const postComment = createAction('POST_COMMENTS');
+export const setComments = createAction('SET_COMMENTS');
 
 export const getComments = index => (
   (dispatch) => {
     axios.get(`${endPoint}/api/comments/`, { params: { index } })
-      .then(res => dispatch(displayComments(res.data)));
+      .then(res => dispatch(setComments(res.data)));
   }
 );
+
+export const postComment = comment => (
+  (dispatch) => {
+    axios.post(`${endPoint}/api/comments/`, { params: { index } })
+      .then(res => dispatch(setComments(res.data)));
+  }
+)

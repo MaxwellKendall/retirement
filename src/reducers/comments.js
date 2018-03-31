@@ -6,6 +6,6 @@ const initialState = {
 };
 
 export default handleActions({
-  [actions.displayComments]: (state, action) => ({ ...state, comments: [...action.payload] }),
+  [actions.setComments]: (state, action) => ({ ...state, comments: [...action.payload] }),
 }, initialState);
 

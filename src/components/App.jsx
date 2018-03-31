@@ -7,8 +7,9 @@ import My404Component from './common/My404Component';
 import CommentsContainer from '../containers/CommentsContainer';
 import LoginContainer from '../containers/LoginContainer';
 import HomeContainer from '../containers/HomeContainer';
-import QuizContainer from '../containers/QuizContainer';
+// import QuizContainer from '../containers/QuizContainer';
 import Header from './Header';
+// import Form from './Form';
 
 const App = props => (
   <Router>
@@ -16,9 +17,10 @@ const App = props => (
       <Header logOut={props.setActiveUser} activeUser={props.activeUser} />
       <Switch>
         <Route exact path="/login" component={LoginContainer} />
-        <PrivateRoute activeUser={props.activeUser} exact path="/memories" component={CommentsContainer} />
-        <PrivateRoute activeUser={props.activeUser} exact path="/quiz" component={QuizContainer} />
-        <PrivateRoute activeUser={props.activeUser} exact path="/" component={HomeContainer} />
+        {/* <PrivateRoute activeUser={props.activeUser} exact path="/memories" component={CommentsContainer} /> */}
+        {/* <PrivateRoute activeUser={props.activeUser} exact path="/quiz" component={QuizContainer} /> */}
+        {/* <PrivateRoute activeUser={props.activeUser} exact path="/quiz" component={Form} /> */}
+        <PrivateRoute activeUser={props.activeUser} exact path="/" component={CommentsContainer} />
         <Route component={My404Component} />
       </Switch>
     </div>

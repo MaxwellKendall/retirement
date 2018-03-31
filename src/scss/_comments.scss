@@ -1,0 +1,25 @@
+.main__comments_body {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 0 16em;
+  ul.comments {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    li {
+      display: flex;
+      align-items: center;
+      img {
+        height: 45px;
+        width: 45px;
+        border-radius: 30px;
+        margin-right: 1em;
+      }
+      h3 {
+        margin-right: 1em;
+      }
+    }
+  }
+}

@@ -44,7 +44,7 @@ export default class Header extends Component {
     return (
       <div ref={(main) => { this.main = main; }} className="main">
         <button
-          className={cx({ 'hidden': !this.props.activeUser})}
+          className={cx('logout', { 'hidden': !this.props.activeUser})}
           onClick={this.handleLogOut}
         >
           Log Out

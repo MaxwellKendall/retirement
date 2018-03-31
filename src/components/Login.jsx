@@ -70,7 +70,7 @@ export default class Login extends Component {
             <div className="login__buttons">
               <FacebookLoginButton onClick={this.facebookResponse} />
               <GoogleLoginButton onClick={this.googleResponse} />
-              <LoginModal
+              {/* <LoginModal
                 header="Sign in with a Username and Password"
               >
                 <form action="/login" id="form__sign-in" method="POST">
@@ -82,7 +82,7 @@ export default class Login extends Component {
                     <input type="submit" value="Log In" />
                   </fieldset>
                 </form>
-              </LoginModal>
+              </LoginModal> */}
             </div>
           </div>
         }

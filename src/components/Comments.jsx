@@ -12,7 +12,6 @@ export default class Comments extends Component {
   }
 
   state = {
-    hideComments: true,
     msg: '',
     loading: false,
     success: false,
@@ -23,14 +22,15 @@ export default class Comments extends Component {
   }
 
   getComments = () => {
-    this.setState(prevState => ({ ...prevState, hideComments: !prevState.hideComments }));
+    this.props.getComments(10);
+    // this.setState(prevState => ({ ...prevState, hideComments: !prevState.hideComments }));
   }
 
   displayComments = comments => (
     comments.map((el, index) => (
       <li key={index}>
-        <h3>{el.name}</h3>
         <img src={el.photoUrl} alt="avatar" />
+        <h3>{el.name}</h3>
         <span>{el.message}</span>
       </li>
     ))
@@ -43,22 +43,18 @@ export default class Comments extends Component {
 
   handleSubmit = () => {
     axios.post('/api/comments', { userid: this.props.activeUser.id, memory: this.state.msg })
-      .then((success) => {
-        this.setState(prevState => ({ ...prevState, loading: true, success: true }));
-        console.log('success: ', success);
+      .then(() => {
+        this.setState(prevState => ({ ...prevState, success: true, msg: '' }));
       })
       .catch(err => console.log('error'));
   }
 
   render() {
     const { comments, activeUser } = this.props;
-    const { hideComments, msg } = this.state;
+    const { msg } = this.state;
     return (
-      <div>
-        <button className="comments" onClick={this.getComments} value="10">
-          {hideComments ? 'View Comments' : 'Hide Comments'}
-        </button>
-        <ul className={cx('comments', { 'hidden': hideComments })}>
+      <div className="main__comments_body">
+        <ul className={cx('comments')}>
           {this.displayComments(comments)}
         </ul>
         <Form onSubmit={this.handleSubmit} success={this.state.success} >
@@ -75,7 +71,7 @@ export default class Comments extends Component {
               rows="10"
               onChange={this.updateMessage}
               value={msg}
-              placeholder="Ross! It's your ole pal! Remember when... Hope you have a great day!"
+              placeholder={`Ross! It's your ole pal ${activeUser.name}! Remember when... Hope you have a great day!`}
             />
           </Form.Field>
           <Button type='submit' disabled={this.state.success}>Submit</Button>
