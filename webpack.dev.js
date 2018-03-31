@@ -7,7 +7,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 const backEndDev = 'http://localhost:9001';
-// const backEndProd = 'https://old-rossy-retirement.herokuapp.com/api/comments';
 
 const PATHS = {
   source: path.join(__dirname, 'src'),

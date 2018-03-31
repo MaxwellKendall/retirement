@@ -13,7 +13,7 @@ import configureStore from './store/configureStore';
 import configureHistory from './history/configureHistory';
 
 import MainContainer from './containers/MainContainer';
-import { saveState } from './localStorage';
+import { saveState } from './utils';
 
 require('./scss/global.scss');
 
@@ -25,6 +25,7 @@ store.subscribe(throttle(() => {
 }, 5000));
 
 const render = (Component) => {
+  console.log('new code 3/31: ', process.env.NODE_ENV);
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>

@@ -6,42 +6,44 @@ import { Button } from 'semantic-ui-react';
 export default class Quiz extends Component {
   static propTypes = {
     getQuiz: PropTypes.func.isRequired,
+    postQuizResults: PropTypes.func.isRequired,
+    activeUser: PropTypes.object.isRequired,
   }
 
   state = {
     index: 0,
-    buttonValue: 'Next Question!',
-    submit: false,
     selectedAnswers: [...new Set()],
+    score: null,
   }
 
   componentDidMount() {
     this.props.getQuiz('first');
   }
 
-  selectAnswer = (selectedAnswer, questionId) => {
+  submit = () => {
+    const { selectedAnswers } = this.state;
+    const { quiz, activeUser } = this.props;
+    const result = Math.floor(selectedAnswers.filter(answer => answer.key === 1).length / quiz.length * 100);
+    this.props.postQuizResults(result, activeUser.id, 'first');
+  }
+
+  selectAnswer = (selectedAnswer, questionId, answerKey) => {
     const answer = selectedAnswer;
     const id = questionId;
-    const filteredState = this.state.selectedAnswers.filter(obj => obj.questionId !== questionId);
-    this.setState(prevState => ({ ...prevState, selectedAnswers: [...filteredState, { questionId, answer }],
+    const key = answerKey;
+    const filteredState = this.state.selectedAnswers.filter(obj => obj.id !== id);
+    this.setState(prevState => ({
+      ...prevState, selectedAnswers: [...filteredState, { id, answer, key }],
     }));
   }
 
-  submit = () => {
-    console.log('submit');
-  }
-
   goNext = () => {
-    console.log('index: ', this.state.index, 'quiz length: ', this.props.quiz.length);
-    if (this.state.index === this.props.quiz.length - 2) {
-      this.setState(prevState => ({ ...prevState, buttonValue: 'Submit Quiz!' }));
-    } else if (this.state.index !== this.props.quiz.length - 1) {
+    if (this.state.index !== this.props.quiz.length - 1) {
       this.setState(prevState => ({ ...prevState, index: prevState.index + 1 }));
     }
   }
 
   goPrevious = () => {
-    console.log('index: ', this.state.index, 'quiz length: ', this.props.quiz.length);
     if (this.state.index !== 0) {
       this.setState(prevState => ({ ...prevState, index: prevState.index - 1 }));
     }
@@ -58,12 +60,13 @@ export default class Quiz extends Component {
             <li
               key={index}
               className={cx({ 'selected': selectedAnswers.some(selectedAnswer => selectedAnswer.answer === answer.answer )})}>
-              <input data-question={answer.question_id} value={answer.answer} onClick={() => this.selectAnswer(answer.answer, answer.question_id)} type="text" read-only="true" />
+              <input value={answer.answer} onClick={() => this.selectAnswer(answer.answer, answer.question_id, answer.answer_key)} type="text" read-only="true" />
             </li>
           ))}
         </ul>
-        <Button onClick={this.state.submit ? this.submit : this.goNext}>{this.state.buttonValue}</Button>
+        <Button onClick={this.goNext}>Next Question</Button>
         <Button className={cx({'hidden': this.state.index === 0})} onClick={this.goPrevious}>Previous Question</Button>
+        <Button onClick={this.submit} disabled={this.state.selectedAnswers.length !== quiz.length}>Submit Quiz</Button>
       </div>
     );
   }

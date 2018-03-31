@@ -1,7 +1,7 @@
 // set active user
 import { handleActions } from 'redux-actions';
 import * as actions from '../actions/ui';
-import { loadState } from '../localStorage';
+import { loadState } from '../utils';
 
 const persistedState = loadState();
 const initialState = {

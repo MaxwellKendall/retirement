@@ -1,5 +1,5 @@
 /* eslint-disable */
-export const loadState = () => {
+const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');
     if (serializedState === "null") {
@@ -12,11 +12,25 @@ export const loadState = () => {
   }
 };
 
-export const saveState = (state) => {
+const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem('state', serializedState)
   } catch (err) {
     console.log(err);
   }
+}
+
+const defineEndPoint = () => {
+  let rtrn = 'http://localhost:9001';
+  if (process.env.NODE_ENV === 'production') {
+    rtrn = 'https://old-rossy-retirement.herokuapp.com/';
+  }
+  return rtrn;
+}
+
+module.exports = {
+  saveState,
+  loadState,
+  defineEndPoint,
 }

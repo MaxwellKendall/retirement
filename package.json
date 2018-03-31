@@ -4,11 +4,11 @@
   "description": "nodejs backend with express w/ react-redux front end",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.js --progress --inline --hot --open",
+    "start": "webpack-dev-server --config webpack.dev.js",
     "test": "BABEL_ENV=test mocha --compilers js:babel-core/register --require ./testSetup.js --recursive ./tests",
     "test:watch": "yarn run test -- --watch",
     "deploy": "yarn run build && s3cmd sync dist/* s3://amiretiredyet.com/",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack -p --config webpack.prod.js"
   },
   "repository": {},
   "author": "",

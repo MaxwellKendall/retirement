@@ -11,6 +11,8 @@ const PATHS = {
   htmlout: path.join(__dirname),
 };
 
+process.env.NODE_ENV = 'production';
+
 module.exports = {
   entry: {
     'App.min': ['babel-polyfill', `${PATHS.source}/index.js`],

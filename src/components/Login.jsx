@@ -5,6 +5,9 @@ import axios from 'axios';
 import GoogleLoginButton from './common/GoogleLoginButton';
 import FacebookLoginButton from './common/FacebookLoginButton';
 import LoginModal from './LoginModal';
+import { defineEndPoint } from '../utils';
+
+const endPoint = defineEndPoint();
 
 export default class Login extends Component {
   static propTypes = {
@@ -22,7 +25,7 @@ export default class Login extends Component {
 
   facebookResponse = (resp) => {
     const { name, email, picture, id, accessToken } = resp;
-    axios.post('/login', {
+    axios.post(`${endPoint}/login`, {
       name,
       email,
       picture,
@@ -46,7 +49,7 @@ export default class Login extends Component {
       id: Eea,
       provider: 'google',
     };
-    axios.post('/login', data)
+    axios.post(`${endPoint}/login`, data)
       .then((res) => {
         this.props.setLoading(true);
         this.props.setActiveUser(res.data);
