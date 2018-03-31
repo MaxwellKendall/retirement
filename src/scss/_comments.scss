@@ -3,6 +3,12 @@
   flex-direction: column;
   margin: auto;
   padding: 0 16em;
+  .comments__toggleView--more,
+  .comments__toggleView--less {
+    margin-right: 1em;
+    padding: .25em;
+    cursor: pointer;
+  }
   ul.comments {
     list-style: none;
     padding: 0;
