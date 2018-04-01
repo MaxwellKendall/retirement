@@ -3,7 +3,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import cx from 'classnames';
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Checkbox, Form } from 'semantic-ui-react';
+
+import { defineEndPoint } from '../utils';
+
+const endPoint = defineEndPoint();
 
 export default class Comments extends Component {
   static propTypes = {
@@ -35,7 +39,7 @@ export default class Comments extends Component {
         <li key={index}>
           <img src={el.photoUrl} alt="avatar" />
           <h3>{el.name}</h3>
-          <span>{el.message}</span>
+          <p>{el.message}</p>
         </li>
       ))
     );
@@ -47,7 +51,7 @@ export default class Comments extends Component {
   }
 
   handleSubmit = () => {
-    axios.post('/api/comments', { userid: this.props.activeUser.id, memory: this.state.msg })
+    axios.post(`${endPoint}/api/comments`, { userid: this.props.activeUser.id, memory: this.state.msg })
       .then(() => {
         this.setState(prevState => ({ ...prevState, success: true, msg: '' }));
         this.getComments(this.state.index);
