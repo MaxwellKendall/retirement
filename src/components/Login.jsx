@@ -64,6 +64,7 @@ export default class Login extends Component {
         {this.props.loading && <h2>Loading...</h2>}
         {!this.props.loading &&
           <div className="login__body">
+          <h3>Ross Kendall's Day has finally (almost) come...</h3>
             <div className="img__container">
               <div className="img" />
             </div>
