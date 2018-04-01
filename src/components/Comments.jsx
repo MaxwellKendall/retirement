@@ -75,10 +75,11 @@ export default class Comments extends Component {
         <ul className={cx('comments')}>
           {this.displayComments(comments)}
         </ul>
+        {comments.length >= 5 &&
         <span className="comments__toggleView">
           <a className="comments__toggleView--more" onClick={this.seeMore}>See More</a>
           <a className="comments__toggleView--less" onClick={this.seeLess}>See Less</a>
-        </span>
+        </span>}
         <Form className={'comments__form'} onSubmit={this.handleSubmit} success={this.state.success} >
           <Form.Field className="comments__explaination">
             <h2>What should I say?</h2>

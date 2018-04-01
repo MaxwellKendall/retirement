@@ -68,6 +68,8 @@ export default class Login extends Component {
               <div className="img" />
             </div>
             <div className="login__buttons">
+              <h3>Log in to share a memory or leave a comment!</h3>
+                <p>Weekly quiz on fascinating Ross Kendall facts begins this Friday, April 7th at 12 PM EST!</p>
               <FacebookLoginButton onClick={this.facebookResponse} />
               <GoogleLoginButton onClick={this.googleResponse} />
               {/* <LoginModal
