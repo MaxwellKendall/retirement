@@ -3,35 +3,56 @@
   flex-direction: column;
   margin: auto;
   padding: 0 16em;
+  h3 {
+    display: flex;
+    justify-content: center;
+    padding-top: 1em;
+    margin: 0;
+  }
   .comments__toggleView--more,
   .comments__toggleView--less {
     margin-right: 1em;
     padding: .25em;
     cursor: pointer;
   }
-  ul.comments {
+  .comments {
     list-style: none;
-    padding: 4em;
+    padding: .25em 4em;
     display: flex;
     flex-direction: column;
-    li {
+    .comment {
       display: flex;
       align-items: center;
-      img {
-        height: 45px;
-        width: 45px;
-        border-radius: 30px;
-        margin-right: 1em;
+      padding: .25em 0;
+      .comment__profile {
+        display: flex;
+        align-items: center;
+        .comment__profile--avatar {
+          height: 45px;
+          width: 45px;
+          border-radius: 30px;
+          margin-right: 1em;
+        }
+        .comment__profile--name {
+          margin: auto 1em;
+          max-width: 10em;
+        }
       }
-      h3 {
-        margin-right: 1em;
-      }
-      p {
-        margin: 0 0 1em;
-        line-height: 1.4285em;
-        max-width: 75%;
+      .comment__message {
         font-size: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        width: 44em;
       }
     }
   }
+  .comments__submit_button {
+    width: 100%;
+    color: white;
+    background: #757575;
+  }
+}
+
+.comments__form {
+    padding-bottom: 1em;
 }

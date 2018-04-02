@@ -36,10 +36,12 @@ export default class Comments extends Component {
       return <li>No comments yet! Be the first one to share a memory!</li>;
     } return (
       comments.map((el, index) => (
-        <li key={index}>
-          <img src={el.photoUrl} alt="avatar" />
-          <h3>{el.name}</h3>
-          <p>{el.message}</p>
+        <li className="comment" key={index}>
+          <div className="comment__profile">
+            <img className="comment__profile--avatar" src={el.photoUrl} alt="avatar" />
+            <h3 className="comment__profile--name">{el.name}</h3>
+          </div>
+          <div className="comment__message">{el.message}</div>
         </li>
       ))
     );
@@ -70,15 +72,16 @@ export default class Comments extends Component {
   render() {
     const { comments, activeUser } = this.props;
     const { msg } = this.state;
+    console.log('activeUser: ', activeUser);
     return (
       <div className="main__comments_body">
+        <h3>Memories of Ross</h3>
         <ul className={cx('comments')}>
           {this.displayComments(comments)}
         </ul>
         {comments.length >= 5 &&
         <span className="comments__toggleView">
           <a className="comments__toggleView--more" onClick={this.seeMore}>See More</a>
-          <a className="comments__toggleView--less" onClick={this.seeLess}>See Less</a>
         </span>}
         <Form className={'comments__form'} onSubmit={this.handleSubmit} success={this.state.success} >
           <Form.Field className="comments__explaination">
@@ -98,7 +101,7 @@ export default class Comments extends Component {
               placeholder={`Ross! It's your ole pal ${activeUser.name}! Remember when... Hope you have a great day!`}
             />
           </Form.Field>
-          <Button onSubmit={this.handleSubmit} type='submit'>Submit</Button>
+          <Button className="comments__submit_button" onSubmit={this.handleSubmit} disabled={this.state.msg.length < 10} type='submit'>Submit</Button>
         </Form>
       </div>
     );

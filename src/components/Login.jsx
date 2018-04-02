@@ -34,7 +34,6 @@ export default class Login extends Component {
       provider: 'facebook',
     })
       .then((response) => {
-        // this.props.setLoading(true);
         this.props.setActiveUser(response.data);
         this.props.history.push('/');
       });
@@ -53,7 +52,6 @@ export default class Login extends Component {
       .then((res) => {
         // this.props.setLoading(true);
         this.props.setActiveUser(res.data);
-        this.props.setActiveUser('yamom');
         this.props.history.push('/');
       });
   };
